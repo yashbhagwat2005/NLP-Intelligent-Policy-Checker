@@ -1,0 +1,45 @@
+{
+  "stageA_recall": {
+    "A0 Random": {
+      "Recall@1": 0.012479201331114808,
+      "Recall@3": 0.04326123128119801,
+      "Recall@5": 0.07487520798668885,
+      "Recall@10": 0.1464226289517471
+    },
+    "A1 TF-IDF similarity": {
+      "Recall@1": 0.13394342762063227,
+      "Recall@3": 0.2882695507487521,
+      "Recall@5": 0.3985024958402662,
+      "Recall@10": 0.5428452579034941
+    },
+    "A2 Supervised LogReg": {
+      "Recall@1": 0.42803660565723795,
+      "Recall@3": 0.7325291181364393,
+      "Recall@5": 0.8111480865224625,
+      "Recall@10": 0.8868552412645591
+    }
+  },
+  "stageB": {
+    "B0 Majority class": {
+      "accuracy": 0.46293639406982307,
+      "macro_F1": 0.2109621880788929,
+      "F1_Compliant": 0.6328865642366787,
+      "F1_Non-compliant": 0.0,
+      "F1_Not addressed": 0.0
+    },
+    "B1 Per-rule prior": {
+      "accuracy": 0.6594930655188905,
+      "macro_F1": 0.6167786400878089,
+      "F1_Compliant": 0.7296385542168675,
+      "F1_Non-compliant": 0.5064377682403434,
+      "F1_Not addressed": 0.6142595978062158
+    },
+    "B2 Retrieval + LogReg": {
+      "accuracy": 0.8115734098517455,
+      "macro_F1": 0.766588064093113,
+      "F1_Compliant": 0.8585807750377453,
+      "F1_Non-compliant": 0.6365591397849463,
+      "F1_Not addressed": 0.8046242774566474
+    }
+  }
+}

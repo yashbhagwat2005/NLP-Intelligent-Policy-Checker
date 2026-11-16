@@ -1,0 +1,8 @@
+FINANCE DEPARTMENT - PROCEDURES
+
+1. Invoices, ledgers and other financial records are archived and retained for 10 years in the document management system.
+2. Payments above Rs 5,00,000 require approval from two authorised signatories, the CFO and one director.
+3. Employees must submit expense claims within 60 days of incurring the expense, along with original receipts.
+4. Monthly bank reconciliations are completed by the 5th working day of the following month.
+5. Purchase orders are raised in the ERP system before goods are received.
+6. Petty cash is limited to Rs 20,000 per branch.

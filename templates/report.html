@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% block title %}Compliance report &middot; Policy Compliance Checker{% endblock %}
+{% block content %}
+{% set c = report.counts %}
+{% set total = report.rows|length %}
+
+<div class="report-head">
+  <div>
+    <h1>Compliance report</h1>
+    <p class="meta">
+      Checked against <strong>{{ report.policy_name }}</strong><br>
+      {{ report.documents|length }} document{{ '' if report.documents|length == 1 else 's' }}:
+      {{ report.documents|join(', ') }} &middot; {{ report.n_clauses }} sentences read<br>
+      {{ report.created }}
+    </p>
+  </div>
+  <div class="report-actions">
+    <a class="button" href="{{ url_for('download_csv', report_id=report.id) }}">Download CSV</a>
+    <button type="button" class="button" onclick="window.print()">Print</button>
+  </div>
+</div>
+
+<div class="figures">
+  <div><span class="num">{{ total }}</span><span class="cap">rules checked</span></div>
+  <div><span class="num bad">{{ c.NON_COMPLIANT }}</span><span class="cap">non-compliant</span></div>
+  <div><span class="num gap">{{ c.NOT_ADDRESSED }}</span><span class="cap">not addressed</span></div>
+  <div><span class="num ok">{{ c.COMPLIANT }}</span><span class="cap">compliant</span></div>
+  <div><span class="num">{{ report.score }}%</span><span class="cap">of rules met</span></div>
+</div>
+<div class="bar" role="img" aria-label="{{ c.COMPLIANT }} compliant, {{ c.NON_COMPLIANT }} non-compliant, {{ c.NOT_ADDRESSED }} not addressed">
+  {% for s in ['COMPLIANT', 'NON_COMPLIANT', 'NOT_ADDRESSED'] %}{% if c[s] %}<span class="seg {{ s|lower }}" style="flex: {{ c[s] }}"></span>{% endif %}{% endfor %}
+</div>
+
+{% if report.n_weak %}
+<p class="notice">{{ report.n_weak }} finding{{ ' is' if report.n_weak == 1 else 's are' }} marked
+  <em>review</em>: the {{ 'model was not confident' if report.kind == 'contract' else 'matching sentence is only loosely related to the rule' }},
+  so please confirm {{ 'it' if report.n_weak == 1 else 'them' }} by hand.</p>
+{% endif %}
+
+{% if report.areas|length > 1 %}
+<h2>By policy area</h2>
+<table class="areas">
+  <thead><tr><th>Area</th><th class="n">Rules</th><th class="n">Non-compliant</th><th class="n">Not addressed</th><th class="n">Compliant</th></tr></thead>
+  <tbody>
+  {% for a in report.areas %}
+    <tr><td>{{ a.name }}</td><td class="n">{{ a.total }}</td>
+      <td class="n {{ 'bad' if a.NON_COMPLIANT }}">{{ a.NON_COMPLIANT or '–' }}</td>
+      <td class="n">{{ a.NOT_ADDRESSED or '–' }}</td>
+      <td class="n">{{ a.COMPLIANT or '–' }}</td></tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endif %}
+
+<h2>Findings</h2>
+<div class="filters">
+  <button type="button" data-show="ALL" class="on">All ({{ total }})</button>
+  {% for s in statuses %}<button type="button" data-show="{{ s }}">{{ names[s] }} ({{ c[s] }})</button>{% endfor %}
+</div>
+
+<table class="findings">
+  <thead><tr><th>Rule</th><th>Requirement</th><th>Status</th><th>Evidence in the documents</th><th>Why</th></tr></thead>
+  <tbody>
+  {% for r in report.rows %}
+    <tr data-status="{{ r.status }}" class="{{ r.status|lower }}">
+      <td class="rule-id">{{ r.rule_id }}{% if r.area %}<span class="sub">{{ r.area }}</span>{% endif %}</td>
+      <td>{{ r.rule }}</td>
+      <td class="status"><span class="mark"></span>{{ names[r.status] }}{% if r.weak %}<span class="review">review</span>{% endif %}</td>
+      <td>{% if r.evidence %}<q>{{ r.evidence }}</q><span class="sub">{{ r.source }}</span>{% else %}<span class="none">None found</span>{% endif %}</td>
+      <td class="why">{{ r.reason }}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+<script>
+  var buttons = document.querySelectorAll(".filters button");
+  buttons.forEach(function (button) {
+    button.addEventListener("click", function () {
+      buttons.forEach(function (b) { b.classList.toggle("on", b === button); });
+      document.querySelectorAll(".findings tbody tr").forEach(function (row) {
+        row.hidden = button.dataset.show !== "ALL" && row.dataset.status !== button.dataset.show;
+      });
+    });
+  });
+</script>
+{% endblock %}

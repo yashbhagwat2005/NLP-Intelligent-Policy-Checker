@@ -1,0 +1,20 @@
+rule_id,label,note
+SEC-01,NON_COMPLIANT,IT SOP allows 8-character passwords; policy requires 12
+SEC-02,COMPLIANT,60-day rotation is stricter than 90 days
+SEC-03,NON_COMPLIANT,MFA is optional for VPN
+SEC-04,COMPLIANT,4 hours is within 24 hours
+PRV-01,COMPLIANT,AES-256 encryption at rest
+PRV-02,NON_COMPLIANT,contact details shared with insurers for marketing without consent
+PRV-03,NOT_ADDRESSED,no procedure covers notifying employees of a personal-data breach
+RET-01,COMPLIANT,10 years >= 8 years
+RET-02,NON_COMPLIANT,CCTV kept 90 days; max is 30
+RET-03,NOT_ADDRESSED,backups are taken but restoration is never tested
+SAF-01,NON_COMPLIANT,drills once a year; policy needs every 6 months
+SAF-02,COMPLIANT,injuries recorded in register same day
+SAF-03,NON_COMPLIANT,PPE not mandatory in warehouse
+FIN-01,COMPLIANT,two signatories required
+FIN-02,NON_COMPLIANT,60 days allowed; max is 30
+FIN-03,NOT_ADDRESSED,no vendor due-diligence procedure documented
+ACC-01,COMPLIANT,accounts disabled on last working day
+ACC-02,COMPLIANT,quarterly reviews (3 months) <= 6 months
+ACC-03,NON_COMPLIANT,warehouse uses common login store01

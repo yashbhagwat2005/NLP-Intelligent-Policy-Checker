@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %}Contract check &middot; Policy Compliance Checker{% endblock %}
+{% block content %}
+<h1>Check a non-disclosure agreement</h1>
+<p class="lead">The agreement is checked against 17 standard NDA rules, for example
+<em>"the receiving party shall not reverse engineer"</em> or <em>"confidential information may be shared
+with employees"</em>. This check uses the model we trained on 423 contracts labelled by lawyers.</p>
+
+{% if error %}<p class="error">{{ error }}</p>{% endif %}
+
+<form class="check" method="post" action="{{ url_for('run_contract_check') }}" enctype="multipart/form-data">
+  <section class="step">
+    <div class="step-no">1</div>
+    <div class="step-body">
+      <h2>Agreement</h2>
+      <label class="field">Upload the agreement
+        <input type="file" name="contract_file" accept=".txt,.pdf,.docx">
+      </label>
+      <label class="field">or paste its text
+        <textarea name="contract_text" rows="8"></textarea>
+      </label>
+      <p class="hint small">Accepted: .txt, .pdf, .docx &middot; English only</p>
+    </div>
+  </section>
+
+  <div class="actions">
+    <button type="submit" class="primary">Run check</button>
+    <span class="or">or</span>
+    <button type="submit" name="sample" value="1" class="plain" formnovalidate>Run the sample agreement</button>
+  </div>
+  <p class="hint small">The sample is a real NDA from the test part of the ContractNLI dataset, which the model
+    did not see during training.</p>
+</form>
+{% endblock %}

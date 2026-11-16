@@ -1,0 +1,48 @@
+{
+  "organisation": "NovaTech Solutions Pvt. Ltd. (fictional company for demo)",
+  "rules": [
+    {"id": "SEC-01", "domain": "Information Security", "text": "User passwords must be at least 12 characters long.",
+     "keywords": "password length characters minimum", "check": {"type": "min", "value": 12, "unit": "characters"}},
+    {"id": "SEC-02", "domain": "Information Security", "text": "Passwords must be changed at least every 90 days.",
+     "keywords": "password change rotate expire days", "check": {"type": "max", "value": 90, "unit": "days"}},
+    {"id": "SEC-03", "domain": "Information Security", "text": "Multi-factor authentication must be enabled for all remote access.",
+     "keywords": "multi-factor authentication MFA two-factor remote access VPN", "check": {"type": "obligation"}},
+    {"id": "SEC-04", "domain": "Information Security", "text": "Security incidents must be reported to the security team within 24 hours.",
+     "keywords": "security incident breach report hours", "check": {"type": "max", "value": 24, "unit": "hours"}},
+
+    {"id": "PRV-01", "domain": "Employee Privacy", "text": "Personal data of employees must be encrypted at rest.",
+     "keywords": "personal data employee records encrypted encryption at rest", "check": {"type": "obligation"}},
+    {"id": "PRV-02", "domain": "Employee Privacy", "text": "Employee personal data must not be shared with third parties without written consent.",
+     "keywords": "share personal data third parties vendors consent", "check": {"type": "prohibition"}},
+    {"id": "PRV-03", "domain": "Employee Privacy", "text": "A data breach involving personal data must be notified to affected employees within 72 hours.",
+     "keywords": "data breach notify affected employees personal data hours", "check": {"type": "max", "value": 72, "unit": "hours"}},
+
+    {"id": "RET-01", "domain": "Data Retention", "text": "Financial records must be retained for at least 8 years.",
+     "keywords": "financial records invoices ledgers retain retention years archive", "check": {"type": "min", "value": 8, "unit": "years"}},
+    {"id": "RET-02", "domain": "Data Retention", "text": "CCTV footage must not be kept for more than 30 days.",
+     "keywords": "CCTV footage video surveillance kept stored deleted days", "check": {"type": "max", "value": 30, "unit": "days"}},
+    {"id": "RET-03", "domain": "Data Retention", "text": "Backups must be tested for restoration every quarter.",
+     "keywords": "backup restore restoration test quarterly", "check": {"type": "obligation"}},
+
+    {"id": "SAF-01", "domain": "Workplace Safety", "text": "Fire drills must be conducted at least once every 6 months.",
+     "keywords": "fire drill evacuation months conducted", "check": {"type": "max", "value": 6, "unit": "months"}},
+    {"id": "SAF-02", "domain": "Workplace Safety", "text": "All workplace injuries must be recorded in the incident register.",
+     "keywords": "workplace injury accident recorded incident register", "check": {"type": "obligation"}},
+    {"id": "SAF-03", "domain": "Workplace Safety", "text": "Protective equipment must be worn in the server room and warehouse.",
+     "keywords": "protective equipment PPE helmet gloves warehouse server room worn", "check": {"type": "obligation"}},
+
+    {"id": "FIN-01", "domain": "Financial Procedures", "text": "Payments above Rs 5,00,000 must be approved by two authorised signatories.",
+     "keywords": "payment approval signatories approve amount dual", "check": {"type": "obligation"}},
+    {"id": "FIN-02", "domain": "Financial Procedures", "text": "Employee expense claims must be submitted within 30 days of the expense.",
+     "keywords": "expense claims reimbursement submitted days", "check": {"type": "max", "value": 30, "unit": "days"}},
+    {"id": "FIN-03", "domain": "Financial Procedures", "text": "Vendors must undergo an anti-bribery due diligence check before onboarding.",
+     "keywords": "vendor supplier onboarding due diligence anti-bribery check", "check": {"type": "obligation"}},
+
+    {"id": "ACC-01", "domain": "Access Control", "text": "Access rights of departing employees must be revoked within 24 hours of exit.",
+     "keywords": "access rights revoked departing employee exit offboarding accounts disabled hours", "check": {"type": "max", "value": 24, "unit": "hours"}},
+    {"id": "ACC-02", "domain": "Access Control", "text": "User access rights must be reviewed at least every 6 months.",
+     "keywords": "access review rights permissions reviewed months audit", "check": {"type": "max", "value": 6, "unit": "months"}},
+    {"id": "ACC-03", "domain": "Access Control", "text": "Shared or generic login accounts must not be used.",
+     "keywords": "shared generic login accounts credentials common", "check": {"type": "prohibition"}}
+  ]
+}

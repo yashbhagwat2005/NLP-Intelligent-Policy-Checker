@@ -1,0 +1,12 @@
+IT DEPARTMENT - STANDARD OPERATING PROCEDURES (v3.2)
+
+1. Account creation. New user accounts are created by the IT helpdesk after a ticket is raised by the reporting manager.
+2. Passwords. Every user password must have a minimum of 8 characters and include one number.
+3. Passwords are automatically set to expire and must be changed every 60 days.
+4. Remote access. Staff working from home connect through the company VPN. Multi-factor authentication is optional for VPN users and may be enabled on request.
+5. Incident handling. Any suspected security incident, such as malware or phishing, must be reported to the security team within 4 hours of detection.
+6. Backups. Backups of all servers are taken every night and stored at the secondary data centre.
+7. Laptops are re-imaged before being assigned to a new employee.
+8. Offboarding. When an employee leaves, all their system accounts and access rights are disabled on their last working day by the IT team.
+9. Access reviews. Department heads perform quarterly access reviews of user permissions in all business applications.
+10. Software installation requires approval from the IT manager.

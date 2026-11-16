@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% block title %}Method &middot; Policy Compliance Checker{% endblock %}
+{% block content %}
+{% set a = metrics.stageA_recall %}
+{% set b = metrics.stageB %}
+<h1>How the checks work</h1>
+<p class="lead">Both checks follow the way an auditor works: find the passage that talks about a rule,
+judge that passage, and keep it as evidence.</p>
+
+<h2>The three results</h2>
+<table class="plain-table">
+  <tbody>
+    <tr><td class="status compliant"><span class="mark"></span>Compliant</td><td>The documents follow the rule.</td></tr>
+    <tr><td class="status non_compliant"><span class="mark"></span>Non-compliant</td><td>The documents talk about the rule but break it.</td></tr>
+    <tr><td class="status not_addressed"><span class="mark"></span>Not addressed</td><td>Nothing in the documents covers the rule.</td></tr>
+  </tbody>
+</table>
+
+<h2>Policy check</h2>
+<ol class="steps">
+  <li><strong>Read the policy.</strong> Every sentence with a requirement word (<em>must, shall, prohibited&hellip;</em>)
+    becomes a rule. Its wording decides its type: a minimum (<em>at least 12 characters</em>), a maximum
+    (<em>within 24 hours, every 6 months</em>), a prohibition (<em>must not</em>) or a plain obligation.</li>
+  <li><strong>Split the documents</strong> into sentences.</li>
+  <li><strong>Find the best sentence for each rule.</strong> The score is the average of two similarities:
+    word overlap (TF-IDF on character n-grams, so <em>report</em> matches <em>reported</em>) and meaning
+    (Sentence-BERT embeddings, so <em>revoked</em> matches <em>disabled</em>). If the best score is below 0.22
+    the rule is <em>not addressed</em>.</li>
+  <li><strong>Judge the sentence.</strong> For number rules the quantity is extracted, converted to a common
+    unit and compared (<em>once a year</em> = 365 days, more than the 180 allowed). For obligations, weak
+    wording such as <em>optional</em> or <em>encouraged</em> means non-compliant. For prohibitions the
+    sentence must contain a restriction.</li>
+  <li><strong>Explain.</strong> The sentence, its document and the reason are shown with every result.
+    A match scoring below 0.40 is marked <em>review</em> and is never accepted as proof of compliance:
+    a possible violation is still reported, but a weak "compliant" becomes <em>not addressed</em>.</li>
+</ol>
+<p>On the sample company (19 rules, 5 documents, answers labelled by us) the check gives the right result
+for 18 rules. The set is small and was also used to choose the two thresholds, so this is a demonstration,
+not a benchmark.</p>
+
+<h2>Contract check</h2>
+<p>This check is learned from data: ContractNLI, 607 real non-disclosure agreements in which lawyers labelled
+17 rules per contract and marked the sentences that prove each label. We trained on 423 contracts and tested
+on 123 that the model never saw.</p>
+<ol class="steps">
+  <li><strong>Evidence finder.</strong> One Logistic Regression per rule scores every sentence
+    (TF-IDF features) and keeps the top 3.</li>
+  <li><strong>Compliance judge.</strong> A second Logistic Regression per rule reads those 3 sentences and
+    predicts one of the three results.</li>
+</ol>
+
+<h3>Evidence found in the top 3 sentences (test contracts)</h3>
+<table class="plain-table numbers">
+  <thead><tr><th>Method</th><th class="n">Recall@1</th><th class="n">Recall@3</th><th class="n">Recall@5</th></tr></thead>
+  <tbody>
+    <tr><td>Random sentences</td>{% for k in ['Recall@1', 'Recall@3', 'Recall@5'] %}<td class="n">{{ '%.1f'|format(a['A0 Random'][k] * 100) }}%</td>{% endfor %}</tr>
+    <tr><td>Similarity to the rule text</td>{% for k in ['Recall@1', 'Recall@3', 'Recall@5'] %}<td class="n">{{ '%.1f'|format(a['A1 TF-IDF similarity'][k] * 100) }}%</td>{% endfor %}</tr>
+    <tr class="ours"><td>Our evidence finder</td>{% for k in ['Recall@1', 'Recall@3', 'Recall@5'] %}<td class="n">{{ '%.1f'|format(a['A2 Supervised LogReg'][k] * 100) }}%</td>{% endfor %}</tr>
+  </tbody>
+</table>
+
+<h3>Final result (test contracts)</h3>
+<table class="plain-table numbers">
+  <thead><tr><th>Model</th><th class="n">Accuracy</th><th class="n">Macro-F1</th><th class="n">F1 non-compliant</th></tr></thead>
+  <tbody>
+    <tr><td>Always the most common result</td>{% for k in ['accuracy', 'macro_F1', 'F1_Non-compliant'] %}<td class="n">{{ '%.3f'|format(b['B0 Majority class'][k]) }}</td>{% endfor %}</tr>
+    <tr><td>Most common result for each rule</td>{% for k in ['accuracy', 'macro_F1', 'F1_Non-compliant'] %}<td class="n">{{ '%.3f'|format(b['B1 Per-rule prior'][k]) }}</td>{% endfor %}</tr>
+    <tr class="ours"><td>Our two-stage model</td>{% for k in ['accuracy', 'macro_F1', 'F1_Non-compliant'] %}<td class="n">{{ '%.3f'|format(b['B2 Retrieval + LogReg'][k]) }}</td>{% endfor %}</tr>
+  </tbody>
+</table>
+
+<h2>Limits</h2>
+<ul class="steps">
+  <li>The policy check compares one sentence with one rule. It can pick a sentence on a related topic that
+    does not really state the requirement; such cases usually carry a low score and are marked <em>review</em>.</li>
+  <li>The contract model is trained on NDAs only and is weakest on the rare non-compliant result.</li>
+  <li>Scanned PDFs (images) are not read. Only English is supported.</li>
+</ul>
+{% endblock %}

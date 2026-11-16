@@ -1,0 +1,39 @@
+NOVATECH SOLUTIONS - CORPORATE POLICY HANDBOOK
+
+
+INFORMATION SECURITY
+
+SEC-01. User passwords must be at least 12 characters long.
+SEC-02. Passwords must be changed at least every 90 days.
+SEC-03. Multi-factor authentication must be enabled for all remote access.
+SEC-04. Security incidents must be reported to the security team within 24 hours.
+
+EMPLOYEE PRIVACY
+
+PRV-01. Personal data of employees must be encrypted at rest.
+PRV-02. Employee personal data must not be shared with third parties without written consent.
+PRV-03. A data breach involving personal data must be notified to affected employees within 72 hours.
+
+DATA RETENTION
+
+RET-01. Financial records must be retained for at least 8 years.
+RET-02. CCTV footage must not be kept for more than 30 days.
+RET-03. Backups must be tested for restoration every quarter.
+
+WORKPLACE SAFETY
+
+SAF-01. Fire drills must be conducted at least once every 6 months.
+SAF-02. All workplace injuries must be recorded in the incident register.
+SAF-03. Protective equipment must be worn in the server room and warehouse.
+
+FINANCIAL PROCEDURES
+
+FIN-01. Payments above Rs 5,00,000 must be approved by two authorised signatories.
+FIN-02. Employee expense claims must be submitted within 30 days of the expense.
+FIN-03. Vendors must undergo an anti-bribery due diligence check before onboarding.
+
+ACCESS CONTROL
+
+ACC-01. Access rights of departing employees must be revoked within 24 hours of exit.
+ACC-02. User access rights must be reviewed at least every 6 months.
+ACC-03. Shared or generic login accounts must not be used.

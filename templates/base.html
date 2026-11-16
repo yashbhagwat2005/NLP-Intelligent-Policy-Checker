@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Policy Compliance Checker{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header class="masthead">
+    <div class="wrap">
+      <a class="brand" href="{{ url_for('policy_form') }}">Policy Compliance Checker</a>
+      <nav>
+        <a href="{{ url_for('policy_form') }}" {% if page == 'policy' %}class="current"{% endif %}>Policy check</a>
+        <a href="{{ url_for('contract_form') }}" {% if page == 'contract' %}class="current"{% endif %}>Contract check</a>
+        <a href="{{ url_for('method') }}" {% if page == 'method' %}class="current"{% endif %}>Method</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="wrap">
+    NLP course project. Results are a first-pass review and should be confirmed by a person.
+  </footer>
+
+  <script>
+    // show that work has started, because a check can take a few seconds
+    document.querySelectorAll("form.check").forEach(function (form) {
+      form.addEventListener("submit", function (event) {
+        var button = event.submitter;
+        if (button) { setTimeout(function () { button.disabled = true; button.textContent = "Checking…"; }, 0); }
+      });
+    });
+  </script>
+</body>
+</html>

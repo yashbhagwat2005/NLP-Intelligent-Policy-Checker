@@ -1,0 +1,9 @@
+HUMAN RESOURCES - PROCESS MANUAL
+
+1. Onboarding. New joiners submit identity documents, bank details and emergency contacts on the HR portal.
+2. Employee records, including salary and medical information, are stored in an encrypted database using AES-256 encryption at rest.
+3. HR may share employee contact details with insurance partners to send them marketing offers.
+4. Leave requests are approved by the reporting manager through the HR portal.
+5. Performance appraisals are conducted once a year in April.
+6. Exit interviews are conducted by the HR business partner for every departing employee.
+7. Grievances can be raised confidentially through the ethics helpline.

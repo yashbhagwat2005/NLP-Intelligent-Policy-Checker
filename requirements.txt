@@ -1,0 +1,12 @@
+pandas
+numpy
+scikit-learn
+scipy
+matplotlib
+joblib
+jupyter
+flask
+sentence-transformers
+pypdf
+python-docx
+reportlab

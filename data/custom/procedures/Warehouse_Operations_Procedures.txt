@@ -1,0 +1,7 @@
+WAREHOUSE OPERATIONS - PROCEDURES
+
+1. Goods received are checked against the purchase order and entered in the inventory system the same day.
+2. The warehouse team uses a common login, store01, on the inventory terminal so that any shift member can update stock.
+3. Stock counts are performed every month and differences above 2 percent are escalated to the operations manager.
+4. Forklifts may only be operated by certified drivers.
+5. Damaged goods are moved to the quarantine area and recorded in the damage log.

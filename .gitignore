@@ -1,0 +1,16 @@
+# Python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# Sentence-BERT model (about 90 MB): downloaded automatically the first time app.py runs
+models/all-MiniLM-L6-v2/
+
+# Zip of the dataset: the extracted copy is in data/raw/contract-nli/
+data/raw/contract-nli.zip
+
+# Local tool settings
+.claude/
+
+# Original source files of the 607 contracts (71 MB). The pipeline only reads train/dev/test.json.
+data/raw/contract-nli/raw/

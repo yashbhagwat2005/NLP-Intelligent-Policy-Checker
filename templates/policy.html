@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Check documents against a policy</h1>
+<p class="lead">Provide the policy your organisation must follow and the procedure documents that describe
+what actually happens. Each rule in the policy is marked compliant, non-compliant or not addressed,
+with the sentence it was judged on.</p>
+
+{% if error %}<p class="error">{{ error }}</p>{% endif %}
+{% if not model_ready %}
+<p class="notice">The language model is still loading after start-up (about a minute). You can submit now;
+the check will begin as soon as it is ready.</p>
+{% endif %}
+
+<form class="check" method="post" action="{{ url_for('run_policy_check') }}" enctype="multipart/form-data">
+  <section class="step">
+    <div class="step-no">1</div>
+    <div class="step-body">
+      <h2>Policy</h2>
+      <p class="hint">The rules to check against. Write one requirement per sentence, using words such as
+        <em>must</em>, <em>shall</em> or <em>must not</em>. Headings become policy areas.</p>
+      <label class="field">Upload the policy document
+        <input type="file" name="policy_file" accept=".txt,.pdf,.docx">
+      </label>
+      <label class="field">or paste the rules
+        <textarea name="policy_text" rows="6" placeholder="Information Security
+Passwords must be at least 12 characters long.
+Security incidents must be reported within 24 hours.
+Shared login accounts must not be used."></textarea>
+      </label>
+    </div>
+  </section>
+
+  <section class="step">
+    <div class="step-no">2</div>
+    <div class="step-body">
+      <h2>Documents to check</h2>
+      <p class="hint">Procedures, manuals or reports. You can select several files; they are searched together.</p>
+      <label class="field">Upload documents
+        <input type="file" name="documents" accept=".txt,.pdf,.docx" multiple>
+      </label>
+      <p class="hint small">Accepted: .txt, .pdf, .docx &middot; up to 10 MB in total</p>
+    </div>
+  </section>
+
+  <div class="actions">
+    <button type="submit" class="primary">Run check</button>
+    <span class="or">or</span>
+    <button type="submit" name="sample" value="1" class="plain" formnovalidate>Run the sample company</button>
+  </div>
+  <p class="hint small">The sample is NovaTech, a fictional company: a 19-rule policy handbook checked against
+    five department procedure documents.</p>
+</form>
+{% endblock %}

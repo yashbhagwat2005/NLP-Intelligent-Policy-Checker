@@ -1,0 +1,11 @@
+metric,value
+documents,607
+rules checked per document,17
+"(document, rule) pairs",10319
+total clauses,48058
+median clauses per document,71
+compliant pairs,5017
+non-compliant pairs,1156
+not-addressed pairs,4146
+avg evidence clauses per decision,1.94
+avg % of document that is evidence,2.7%

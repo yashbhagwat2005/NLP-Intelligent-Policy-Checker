@@ -1,0 +1,18 @@
+rule_id,accuracy,rule_name,rule_text
+nda-1,0.6585365853658537,Explicit identification,All Confidential Information shall be expressly identified by the Disclosing Party.
+nda-10,0.9105691056910569,Confidentiality of Agreement,Receiving Party shall not disclose the fact that Agreement was agreed or negotiated.
+nda-11,0.943089430894309,No reverse engineering,Receiving Party shall not reverse engineer any objects which embody Disclosing Party's Confidential Information.
+nda-12,0.8780487804878049,Permissible development of similar information,Receiving Party may independently develop information similar to Confidential Information.
+nda-13,0.959349593495935,Permissible acquirement of similar information,Receiving Party may acquire information similar to Confidential Information from a third party.
+nda-15,0.8699186991869918,No licensing,Agreement shall not grant Receiving Party any right to Confidential Information.
+nda-16,0.6422764227642277,Return of confidential information,Receiving Party shall destroy or return some Confidential Information upon the termination of Agreement.
+nda-17,0.7154471544715447,Permissible copy,Receiving Party may create a copy of some Confidential Information in some circumstances.
+nda-18,0.9512195121951219,No solicitation,Receiving Party shall not solicit some of Disclosing Party's representatives.
+nda-19,0.8617886178861789,Survival of obligations,Some obligations of Agreement may survive termination of Agreement.
+nda-2,0.7479674796747967,None-inclusion of non-technical information,Confidential Information shall only include technical information.
+nda-20,0.6341463414634146,Permissible post-agreement possession,Receiving Party may retain some Confidential Information even after the return or destruction of Confidential Information.
+nda-3,0.7804878048780488,Inclusion of verbally conveyed information,Confidential Information may include verbally conveyed information.
+nda-4,0.8617886178861789,Limited use,Receiving Party shall not use any Confidential Information for any purpose other than the purposes stated in Agreement.
+nda-5,0.8536585365853658,Sharing with employees,Receiving Party may share some Confidential Information with some of Receiving Party's employees.
+nda-7,0.6829268292682927,Sharing with third-parties,"Receiving Party may share some Confidential Information with some third-parties (including consultants, agents and professional advisors)."
+nda-8,0.8455284552845529,Notice on compelled disclosure,"Receiving Party shall notify Disclosing Party in case Receiving Party is required by law, regulation or judicial process to disclose any Confidential Information."
